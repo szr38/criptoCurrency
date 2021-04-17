@@ -1,0 +1,18 @@
+<!-- <mat-sidenav-container class="w-100 h-100">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="test('abierto')" (closed)="test('cerrado')">
+    <div class="d-flex flex-column">
+      <button *ngFor="let item of [].constructor(5)"> botones sidenav</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+    no se q va aqui
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+<mat-nav-list  style="height: 100%;">
+  <button *ngFor="let item of [].constructor(5)"> botones sidenav</button>
+
+</mat-nav-list>

@@ -1,0 +1,36 @@
+<!-- <p>header</p>
+<div class="container-fluid d-flex flex-row dashboard">
+    <app-sidebar style="width: 15%;"></app-sidebar>
+    <div style="width: 85%;">
+        <router-outlet></router-outlet>
+    </div>
+</div> -->
+
+
+<mat-drawer-container class="drawer-container">
+    <p>header</p>
+    <mat-drawer #sidenav class="sidenav" mode="side" [opened]="opened">
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>
+
+
+<!-- <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div>
+  
+  </mat-drawer-container> -->
