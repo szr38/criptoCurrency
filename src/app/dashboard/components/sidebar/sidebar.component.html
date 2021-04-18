@@ -12,7 +12,12 @@
 </mat-sidenav-container> -->
 
 
-<mat-nav-list  style="height: 100%;">
-  <button *ngFor="let item of [].constructor(5)"> botones sidenav</button>
+<mat-nav-list class="sidebar">
+  <button *ngFor="let item of [].constructor(5)">
+    <mat-icon class="material-icons-outlined">
+      account_balance_wallet
+      </mat-icon>
+      Wallet
+  </button>
 
 </mat-nav-list>

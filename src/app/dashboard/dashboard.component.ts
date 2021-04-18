@@ -7,13 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  opened: boolean=false;
+  opened: boolean=true;
 
   showFiller = false;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
+  }
+
+  receiveMessage($event) {
+    this.opened = $event
   }
 
 }

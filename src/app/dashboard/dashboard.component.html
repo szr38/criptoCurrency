@@ -8,7 +8,7 @@
 
 
 <mat-drawer-container class="drawer-container">
-    <p>header</p>
+    <app-header-dashboard (openSidebar)="receiveMessage($event)"></app-header-dashboard>
     <mat-drawer #sidenav class="sidenav" mode="side" [opened]="opened">
         <app-sidebar></app-sidebar>
     </mat-drawer>
