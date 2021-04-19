@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 // components
-import { WalletComponent } from './components/wallet/wallet.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 
 

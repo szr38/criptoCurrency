@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 
 import { DashboardComponent } from './dashboard.component';
-import { WalletComponent } from './components/wallet/wallet.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';

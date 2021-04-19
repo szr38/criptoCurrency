@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { walletClass } from './dashboard/components/wallet/wallet.model';
+import { walletClass } from './dashboard/pages/wallet/wallet.model';
 // import * as fromUI from './shared/ui.reducer';
-import * as fromWallet from './dashboard/components/wallet/wallet.reducer';
+import * as fromWallet from './dashboard/pages/wallet/wallet.reducer';
 
 
 export interface AppState {
