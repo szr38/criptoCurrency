@@ -9,6 +9,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -23,7 +25,8 @@ import { HeaderDashboardComponent } from './components/header-dashboard/header-d
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    ChartsModule
   ]
 })
 export class DashboardModule { }

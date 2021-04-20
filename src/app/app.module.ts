@@ -10,6 +10,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducers';
 
+import { ChartsModule } from 'ng2-charts';
+
+
 import { SharedModule } from '../app/shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -31,6 +34,7 @@ import { environment } from 'src/environments/environment';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
