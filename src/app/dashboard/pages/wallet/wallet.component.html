@@ -7,7 +7,7 @@
 <div class="d-flex flex-row">
   <!-- width="400" height="400" -->
   <div class="col-6">
-    <canvas baseChart 
+    <canvas baseChart
       [datasets]="lineChartData" 
       [labels]="lineChartLabels" 
       [colors]="lineChartColors"
@@ -17,7 +17,7 @@
     </canvas>
   </div>
 
-  <div>
+  <div class="col-6">
     <mat-table [dataSource]="dataSource" matSort>
       <!-- Position Column -->
       <ng-container matColumnDef="position">
@@ -46,7 +46,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
   </div>
 
 </div>
@@ -54,7 +54,7 @@
   <mat-form-field>
     <mat-label>Añadir saldo</mat-label>
     <input matInput type="number" formControlName='amount'>
-    <button mat-button matSuffix mat-icon-button aria-label="Add" (click)="onAddCredit()">
+    <button mat-button matSuffix mat-icon-button aria-label="Add" (click)="onAddCredit()" (keyup.enter)="onAddCredit()">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
   </mat-form-field>

@@ -13,11 +13,11 @@
 
 
 <mat-nav-list class="sidebar">
-  <button *ngFor="let item of [].constructor(5)">
+  <button *ngFor="let item of buttons" [routerLink]="item.link" routerLinkActive>
     <mat-icon class="material-icons-outlined">
-      account_balance_wallet
+      {{item.icon}}
       </mat-icon>
-      Wallet
+      {{item.text}}
   </button>
 
 </mat-nav-list>

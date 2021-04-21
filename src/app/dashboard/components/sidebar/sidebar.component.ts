@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  events: string[] = [];
+  buttons:sideBar[]=[
+    {    icon:'account_balance_wallet',    link:'wallet',    text:'Wallet'  },
+    {    icon:'paid',    link:'moneyA',    text:'Wallet'  },
+]
   opened: boolean;
 
   constructor() { }
@@ -19,4 +22,10 @@ export class SidebarComponent implements OnInit {
     console.log(test)
   }
 
+}
+
+interface sideBar{
+  icon:string;
+  link:string;
+  text:string;
 }

@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
 
 
 
@@ -22,6 +23,7 @@ import { ChartsModule } from 'ng2-charts';
     WalletComponent,
     SidebarComponent,
     HeaderDashboardComponent,
+    CriptoMoneyAComponent,
   ],
   imports: [
     CommonModule,

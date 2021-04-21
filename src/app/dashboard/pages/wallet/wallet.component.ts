@@ -80,23 +80,22 @@ export class WalletComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.store.select('wallet').subscribe( wallet =>{
       this.wallet=wallet;
+      this.walletTotal=0;
       wallet.forEach(element => {
         this.walletTotal+=element.amount;
       });
-      console.log(wallet, this.walletTotal);
     });
   }
 
   onAddCredit(){
-    this.walletTotal+=this.form.get('amount').value;
-    console.log(this.form.get('amount').value);
     const temp:walletClass={
-      amount:1500,
+      amount:this.form.get('amount').value,
       transaction: 'cod4',
       day:new Date,
   }
     const newWallet =new SetWalletAction(temp);
-    this.store.dispatch(newWallet)
+    this.store.dispatch(newWallet);
+    this.form.get("amount").setValue('');
   }
 
 
