@@ -28,11 +28,29 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-// import { NgImageSliderModule } from 'ng-image-slider';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
+
+
+
+import {A11yModule} from '@angular/cdk/a11y';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTreeModule} from '@angular/material/tree';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 const MaterialComponets = [
   MatInputModule,
@@ -68,7 +86,22 @@ const MaterialComponets = [
   MatDialogModule,
   MatRadioModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+
+  MatSortModule,
+  MatTreeModule,
+  OverlayModule,
+  MatSliderModule,
+  MatProgressBarModule,
+  MatButtonToggleModule,
+  CdkTreeModule,
+  CdkTableModule,
+  CdkStepperModule,
+  ScrollingModule,
+  PortalModule,
+  DragDropModule,
+  ClipboardModule,
+  A11yModule
 ];
 
 @NgModule({

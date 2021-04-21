@@ -1,19 +1,62 @@
 <mat-card>
-    Su saldo:{{walletTotal}}
+  Su saldo:{{walletTotal}}
 </mat-card>
 
 
 
-<div>
-  <canvas baseChart width="400" height="400"
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"
-    [plugins]="lineChartPlugins">
-  </canvas>
+<div class="d-flex flex-row">
+  <!-- width="400" height="400" -->
+  <div class="col-6">
+    <canvas baseChart 
+      [datasets]="lineChartData" 
+      [labels]="lineChartLabels" 
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend" 
+      [chartType]="lineChartType" 
+      [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
 
-  <div></div>
+  <div>
+    <mat-table [dataSource]="dataSource" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Weight </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
 </div>
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Añadir saldo</mat-label>
+    <input matInput type="number" formControlName='amount'>
+    <button mat-button matSuffix mat-icon-button aria-label="Add" (click)="onAddCredit()">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+<!-- <button (click)="onAddCredit()">Añadir saldo</button> -->

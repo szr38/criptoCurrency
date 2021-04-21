@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { DashboardComponent } from './dashboard.component';
@@ -20,13 +21,15 @@ import { ChartsModule } from 'ng2-charts';
     DashboardComponent, 
     WalletComponent,
     SidebarComponent,
-    HeaderDashboardComponent
+    HeaderDashboardComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }
