@@ -2,7 +2,6 @@ import * as fromWalletActions from './wallet.actions';
 import { walletClass, walletInterface } from './wallet.model';
 
 
-// const infotemp=new walletClass({15000,'qwert1a',new Date});
 const infotemp:walletInterface={
     amount:15000,
     transaction: 'cod1',
