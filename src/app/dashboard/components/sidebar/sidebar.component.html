@@ -13,11 +13,11 @@
 
 
 <mat-nav-list class="sidebar">
-  <button *ngFor="let item of buttons" [routerLink]="item.link" routerLinkActive>
+  <a *ngFor="let item of buttons" [routerLink]="item.link" routerLinkActive="active-link">
     <mat-icon class="material-icons-outlined">
       {{item.icon}}
-      </mat-icon>
-      {{item.text}}
-  </button>
+    </mat-icon>
+    {{item.text}}
+  </a>
 
 </mat-nav-list>

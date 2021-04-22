@@ -12,6 +12,8 @@ import { HeaderDashboardComponent } from './components/header-dashboard/header-d
 
 import { ChartsModule } from 'ng2-charts';
 import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
+import { GraphicComponent } from './components/graphic/graphic.component';
+import { TableComponent } from './components/table/table.component';
 
 
 
@@ -24,6 +26,8 @@ import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.com
     SidebarComponent,
     HeaderDashboardComponent,
     CriptoMoneyAComponent,
+    GraphicComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,

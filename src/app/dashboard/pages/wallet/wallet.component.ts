@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppState } from 'src/app/app.reducers';
 import { walletClass } from './wallet.model';
 import { SetWalletAction } from './wallet.actions';
@@ -13,7 +14,6 @@ import {MatPaginator} from '@angular/material/paginator';
 
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 
@@ -43,9 +43,10 @@ export class WalletComponent implements OnInit, AfterViewInit {
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  // public lineChartOptions: (ChartOptions & { annotation: any }) = {
-  //   responsive: true,
-  // };
+  public lineChartOptions: ChartOptions = {
+    responsive: true,
+    scales: { xAxes: [{}], yAxes: [{}] },
+  };
   public lineChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -66,7 +67,6 @@ export class WalletComponent implements OnInit, AfterViewInit {
 
   walletSubs: Subscription = new Subscription();
   wallet:walletClass[];
-  walletTotal:number=0;
 
   form: FormGroup;
 
@@ -80,10 +80,6 @@ export class WalletComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.store.select('wallet').subscribe( wallet =>{
       this.wallet=wallet;
-      this.walletTotal=0;
-      wallet.forEach(element => {
-        this.walletTotal+=element.amount;
-      });
     });
   }
 

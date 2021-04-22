@@ -1,18 +1,13 @@
-<mat-card>
-  Su saldo:{{walletTotal}}
-</mat-card>
-
-
-
 <div class="d-flex flex-row">
   <!-- width="400" height="400" -->
-  <div class="col-6">
+  <div class="col-6" style="display: block" >
     <canvas baseChart
       [datasets]="lineChartData" 
       [labels]="lineChartLabels" 
       [colors]="lineChartColors"
       [legend]="lineChartLegend" 
       [chartType]="lineChartType" 
+      [options]="lineChartOptions"
       [plugins]="lineChartPlugins">
     </canvas>
   </div>
@@ -59,4 +54,4 @@
     </button>
   </mat-form-field>
 </form>
-<!-- <button (click)="onAddCredit()">Añadir saldo</button> -->
+
