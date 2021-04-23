@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -22,7 +22,7 @@ import { Color, Label } from 'ng2-charts';
   templateUrl: './wallet.component.html',
   styleUrls: ['./wallet.component.sass']
 })
-export class WalletComponent implements OnInit, AfterViewInit {
+export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -80,6 +80,8 @@ export class WalletComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.store.select('wallet').subscribe(wallet => {
       this.wallet = wallet;
+      console.log('wallet open in wallet page');
+      
     });
   }
 
@@ -92,6 +94,12 @@ export class WalletComponent implements OnInit, AfterViewInit {
     const newWallet = new SetWalletAction(temp);
     this.store.dispatch(newWallet);
     this.form.get("amount").setValue('');
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.walletSubs.unsubscribe();
   }
 
 
