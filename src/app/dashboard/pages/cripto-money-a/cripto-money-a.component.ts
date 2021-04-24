@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
+import { CriptoAService } from 'src/app/services/cripto-a.service';
 import { UpdateCriptoAction } from 'src/app/shared/criptomoney.action';
 import { criptomoneyClass } from 'src/app/shared/criptomoney.model';
 import { SetWalletAction } from '../wallet/wallet.actions';
@@ -15,15 +16,18 @@ import { walletClass } from '../wallet/wallet.model';
 export class CriptoMoneyAComponent implements OnInit {
 
   form: FormGroup;
+  criptoA:number[];
 
   constructor(private fb: FormBuilder,
-    private store: Store<AppState>,) {
+    private store: Store<AppState>,
+    private service: CriptoAService) {
     this.form = this.fb.group({
       amount: ['',],
     });
    }
 
   ngOnInit(): void {
+    this.service.subjectA$.subscribe(resp=>{this.criptoA=resp});
   }
 
   onUpdateCripto(){

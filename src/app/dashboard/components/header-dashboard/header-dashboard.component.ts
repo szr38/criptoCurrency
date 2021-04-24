@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducers';
+import { CriptoAService } from 'src/app/services/cripto-a.service';
 import { walletClass } from '../../pages/wallet/wallet.model';
 
 @Component({
@@ -19,9 +20,10 @@ export class HeaderDashboardComponent implements OnInit, OnDestroy {
   wallet: walletClass[];
   walletTotal: number = 0;
 
-  constructor(private store: Store<AppState>,) { }
+  constructor(private store: Store<AppState>, private service: CriptoAService) { }
 
   ngOnInit(): void {
+    this.service.subjectA$;
     this.walletSubs = this.store.select('wallet').subscribe(wallet => {
       this.wallet = wallet;
       this.walletTotal = 0;
