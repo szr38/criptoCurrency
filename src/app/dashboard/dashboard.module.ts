@@ -6,16 +6,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 
 import { DashboardComponent } from './dashboard.component';
-import { WalletComponent } from './pages/wallet/wallet.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
-import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';
 
-import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
-import { TableComponent } from './components/table/table.component';
+// components
+import { GraphicComponent } from './components/graphic/graphic.component';
 import { GraphicAComponent } from './components/graphic-a/graphic-a.component';
 import { GraphicBComponent } from './components/graphic-b/graphic-b.component';
 import { GraphicCComponent } from './components/graphic-c/graphic-c.component';
+import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TableComponent } from './components/table/table.component';
+
+// pages
+import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 
 
@@ -31,7 +35,8 @@ import { GraphicCComponent } from './components/graphic-c/graphic-c.component';
     TableComponent,
     GraphicAComponent,
     GraphicBComponent,
-    GraphicCComponent
+    GraphicCComponent,
+    GraphicComponent
   ],
   imports: [
     CommonModule,

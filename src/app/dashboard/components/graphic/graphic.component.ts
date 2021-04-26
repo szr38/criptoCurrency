@@ -1,18 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import { Subscription } from 'rxjs';
-import { CriptoAService } from 'src/app/services/cripto-a.service';
+
 
 @Component({
-  selector: 'app-graphic-a',
-  templateUrl: './graphic-a.component.html',
-  styleUrls: ['./graphic-a.component.sass']
+  selector: 'app-graphic',
+  templateUrl: './graphic.component.html',
+  styleUrls: ['./graphic.component.sass']
 })
-export class GraphicAComponent implements OnInit, OnDestroy {
+export class GraphicComponent implements OnInit, OnChanges {
 
-  graphicSub: Subscription = new Subscription();
+  @Input() var:number;
 
   public lineChartData: ChartDataSets[] = [
     // { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
@@ -39,9 +38,15 @@ export class GraphicAComponent implements OnInit, OnDestroy {
   public lineChartType = 'line';
   public lineChartPlugins = [];
 
-  constructor(private service: CriptoAService) {
-    this.graphicSub=this.service.subjectA$.subscribe(resp => {
-      this.lineChartData[0].data.push(resp);
+  constructor() {}
+
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.var.currentValue){
+      console.log(this.var, "cambio");
+      this.lineChartData[0].data.push(this.var);
       if (this.lineChartData[0].data.length >= 11) {
         this.lineChartData[0].data.shift();
       }
@@ -51,16 +56,7 @@ export class GraphicAComponent implements OnInit, OnDestroy {
       if (this.lineChartLabels.length >= 11) {
         this.lineChartLabels.shift();
       }
-    });
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.graphicSub.unsubscribe();
+    }
   }
 
 }

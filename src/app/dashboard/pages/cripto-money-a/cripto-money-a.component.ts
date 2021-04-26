@@ -16,7 +16,7 @@ import { walletClass } from '../wallet/wallet.model';
 export class CriptoMoneyAComponent implements OnInit {
 
   form: FormGroup;
-  criptoA:number[];
+  criptoA:number;
 
   constructor(private fb: FormBuilder,
     private store: Store<AppState>,
