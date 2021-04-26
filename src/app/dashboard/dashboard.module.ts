@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ChartsModule } from 'ng2-charts';
 
 import { DashboardComponent } from './dashboard.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
@@ -10,10 +11,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderDashboardComponent } from './components/header-dashboard/header-dashboard.component';
 
-import { ChartsModule } from 'ng2-charts';
 import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
-import { GraphicComponent } from './components/graphic/graphic.component';
 import { TableComponent } from './components/table/table.component';
+import { GraphicAComponent } from './components/graphic-a/graphic-a.component';
+import { GraphicBComponent } from './components/graphic-b/graphic-b.component';
+import { GraphicCComponent } from './components/graphic-c/graphic-c.component';
 
 
 
@@ -26,8 +28,10 @@ import { TableComponent } from './components/table/table.component';
     SidebarComponent,
     HeaderDashboardComponent,
     CriptoMoneyAComponent,
-    GraphicComponent,
     TableComponent,
+    GraphicAComponent,
+    GraphicBComponent,
+    GraphicCComponent
   ],
   imports: [
     CommonModule,

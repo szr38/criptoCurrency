@@ -6,8 +6,17 @@ import { Observable, Observer, Subject } from 'rxjs';
 })
 export class CriptoAService {
 
+  criptoA=32000.45;
+  criptoB=65000.32;
+
   observer: Observer<any> = {
     next: value => console.log('nextA:', value),
+    error: error => console.warn('error:', error),
+    complete: () => console.info('completado')
+  };
+
+  observerB: Observer<any> = {
+    next: value => console.log('nextB:', value),
     error: error => console.warn('error:', error),
     complete: () => console.info('completado')
   };
@@ -16,15 +25,10 @@ export class CriptoAService {
   subjectB$ = new Subject<number>()
 
   criptoA$ = new Observable(subs => {
-    let array: number[] = [64500.78, 64750.34, 64786.23, 65234.3242, 64750.34, 65234.3242, 65264.3742, 65334.3242, 65534.42, 65034.3242,]
     setInterval(
       () => {
-        // subs.next( Math.random() * (200 - (-200)) + (-200) )
-        // array.push(array[array.length-1]+Math.random() * (1000 - (-1000)) + (-1000));
-        array.push(array[array.length - 1] + Math.random() * 1000);
-        array.shift();
-        subs.next(array);
-      }, 5000
+        subs.next( this.criptoA=this.criptoA+(Math.random() * (200 - (-200)) + (-200) ));
+      }, 3000
     );
   });
 
@@ -33,7 +37,7 @@ export class CriptoAService {
 
     setInterval(
       () => {
-        subs.next(Math.random() * (200 - (0)) + (0))
+        subs.next( this.criptoB=this.criptoB+(Math.random() * (200 - (-200)) + (-200)) )
       }, 3000
     );
   });
@@ -44,7 +48,7 @@ export class CriptoAService {
     this.subjectA$.subscribe();
 
     this.criptoB$.subscribe(this.subjectB$);
-    this.subjectB$.subscribe(this.observer);
+    this.subjectB$.subscribe(this.observerB);
   }
 }
 

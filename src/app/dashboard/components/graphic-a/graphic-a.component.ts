@@ -1,17 +1,15 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { CriptoAService } from 'src/app/services/cripto-a.service';
 
 @Component({
-  selector: 'app-graphic',
-  templateUrl: './graphic.component.html',
-  styleUrls: ['./graphic.component.sass']
+  selector: 'app-graphic-a',
+  templateUrl: './graphic-a.component.html',
+  styleUrls: ['./graphic-a.component.sass']
 })
-export class GraphicComponent implements OnInit {
-
-  @Input() chartData: number[];
+export class GraphicAComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
     // { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
@@ -19,7 +17,7 @@ export class GraphicComponent implements OnInit {
 
   ];
   // public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartLabels: Label[] = ['', '', '', '', '', '', '', '', '', ''];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: ChartOptions = {
     responsive: true,
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -40,28 +38,20 @@ export class GraphicComponent implements OnInit {
 
   constructor(private service: CriptoAService) {
     this.service.subjectB$.subscribe(resp => {
-      this.lineChartData[0].data.push(resp);     
+      this.lineChartData[0].data.push(resp);
       if (this.lineChartData[0].data.length >= 11) {
-        let chartTime: any = new Date();
-        chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
         this.lineChartData[0].data.shift();
-        this.lineChartLabels.push(chartTime);
+      }
+      let chartTime: any = new Date();
+      chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
+      this.lineChartLabels.push(chartTime);
+      if (this.lineChartLabels.length >= 11) {
         this.lineChartLabels.shift();
       }
     });
   }
 
   ngOnInit(): void {
-
   }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-  //   //Add '${implements OnChanges}' to the class.
-  //   if(changes.chartData.currentValue){
-  //     this.lineChartData=[{ data: this.chartData , label: 'Series A'}];
-  //     console.log(this.lineChartData, 'cambio');
-  //   }
-  // }
 
 }
