@@ -45,7 +45,7 @@ export class GraphicComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.var.currentValue){
-      console.log(this.var, "cambio");
+      // console.log(this.var, "cambio");
       this.lineChartData[0].data.push(this.var);
       if (this.lineChartData[0].data.length >= 11) {
         this.lineChartData[0].data.shift();

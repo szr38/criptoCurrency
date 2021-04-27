@@ -14,7 +14,7 @@ export interface AppState {
     // ui: fromUI.State;
     wallet: walletClass[];
     criptomoney: criptomoneyClass[];
-    graphic: graphicClass;
+    graphic: any;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {

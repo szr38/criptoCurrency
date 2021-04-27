@@ -18,7 +18,8 @@ export class CriptoAService {
 
   money: number[] = [];
   char: string[] = [];
-  test: graphicClass;
+  // test: graphicClass;
+  test: any = {}
   // test:graphicClass={    amounts:[0,1,2,3],          hour: ['a','a','a','a']}
 
   observerA: Observer<any> = {
@@ -40,14 +41,22 @@ export class CriptoAService {
 
     setInterval(
       () => {
-        this.money.push(this.criptoA = this.criptoA + (Math.random() * (175 - (-175)) + (-175)));
-        let chartTime: any = new Date();
-        chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
-        this.char.push(chartTime);
-        console.log(this.test);
+        // console.log((175 - (-175)) + (-175));
+        this.criptoA = this.criptoA + (Math.random() * (175 - (-175)) + (-175))
+        console.log(this.criptoA);
+        
+        this.money = [...this.money,this.criptoA];
+        const chartTime: string = new Date().toTimeString().split(' ')[0];
+        // chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
+        this.char = [...this.char, chartTime]
 
-
-        this.store.dispatch(new UpdateCriptoAction(this.test))
+        this.test = {
+          ...this.test,
+          amounts: this.money,
+          hour: this.char
+        }
+        // this.store.dispatch(new UpdateCriptoAction(this.test))
+        this.store.dispatch(UpdateCriptoAction(this.test))
         subs.next(this.criptoA = this.criptoA + (Math.random() * (175 - (-175)) + (-175)));
       }, 1500
     );

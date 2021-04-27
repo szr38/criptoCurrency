@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "criptoCurrency"
+  "defaultProject": "criptoCurrency",
+  "cli": {
+    "analytics": "1c9056fb-0cfa-4b6a-b238-6a5e1ab316f0"
+  }
 }
