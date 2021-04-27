@@ -19,6 +19,7 @@ import { TableComponent } from './components/table/table.component';
 
 // pages
 import { CriptoMoneyAComponent } from './pages/cripto-money-a/cripto-money-a.component';
+import { CriptoMoneyBComponent } from './pages/cripto-money-b/cripto-money-b.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 
 
@@ -36,7 +37,8 @@ import { WalletComponent } from './pages/wallet/wallet.component';
     GraphicAComponent,
     GraphicBComponent,
     GraphicCComponent,
-    GraphicComponent
+    GraphicComponent,
+    CriptoMoneyBComponent
   ],
   imports: [
     CommonModule,

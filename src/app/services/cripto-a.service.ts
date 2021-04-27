@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Observer, Subject } from 'rxjs';
 import { AppState } from '../app.reducers';
-import { UpdateCriptoAction } from '../shared/redux-graphic/graphic.actions';
-import { graphicClass } from '../shared/redux-graphic/graphic.model';
+import * as fromGraphicRedux from '../shared/redux-graphic/graphic.actions'
+import { graphic } from '../shared/interface/interfaces';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,9 @@ export class CriptoAService {
   criptoA = 13000.45;
   criptoB = 65000.32;
 
-  hola: graphicClass
-
-
-  money: number[] = [];
-  char: string[] = [];
-  test: graphicClass;
-  // test:graphicClass={    amounts:[0,1,2,3],          hour: ['a','a','a','a']}
+  graphA: graphic = { amounts: [], hour: [] };
+  graphB: graphic = { amounts: [], hour: [] };
+  graphC: graphic = { amounts: [], hour: [] };
 
   observerA: Observer<any> = {
     next: value => console.log('nextA:', value),
@@ -34,22 +31,26 @@ export class CriptoAService {
   };
 
   subjectA$ = new Subject<number>();
-  subjectB$ = new Subject<number>()
+  subjectB$ = new Subject<number>();
+  subjectC$ = new Subject<number>();
 
   criptoA$ = new Observable(subs => {
 
     setInterval(
       () => {
-        this.money.push(this.criptoA = this.criptoA + (Math.random() * (175 - (-175)) + (-175)));
-        let chartTime: any = new Date();
-        chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
-        this.char.push(chartTime);
-        console.log(this.test);
-
-
-        this.store.dispatch(new UpdateCriptoAction(this.test))
         subs.next(this.criptoA = this.criptoA + (Math.random() * (175 - (-175)) + (-175)));
-      }, 1500
+        let chartTime: any = new Date().toTimeString().split(' ')[0];
+
+        this.graphA = {
+          amounts: [...this.graphA.amounts, this.criptoA],
+          hour: [...this.graphA.hour, chartTime]
+        }
+        if (this.graphA.amounts.length >= 11) {
+          this.graphA.amounts.shift();
+          this.graphA.hour.shift();
+        }
+        this.store.dispatch(fromGraphicRedux.UpdateCriptoAction({ cripto:this.graphA }));
+      }, 3000
     );
   });
 
@@ -59,6 +60,17 @@ export class CriptoAService {
     setInterval(
       () => {
         subs.next(this.criptoB = this.criptoB + (Math.random() * (200 - (-200)) + (-200)));
+        let chartTime: any = new Date().toTimeString().split(' ')[0];
+        console.log('B', this.criptoB);
+        this.graphB = {
+          amounts: [...this.graphB.amounts, this.criptoB],
+          hour: [...this.graphB.hour, chartTime]
+        }
+        if (this.graphB.amounts.length >= 11) {
+          this.graphB.amounts.shift();
+          this.graphB.hour.shift();
+        }
+        this.store.dispatch(fromGraphicRedux.UpdateCriptoBAction({cripto: this.graphB}));
       }, 3000
     );
   });

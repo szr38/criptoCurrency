@@ -78,10 +78,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select('wallet').subscribe(wallet => {
+    this.walletSubs = this.store.select('wallet').subscribe(wallet => {
       this.wallet = wallet;
       console.log('wallet open in wallet page');
-      
+
     });
   }
 
