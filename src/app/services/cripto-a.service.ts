@@ -61,7 +61,7 @@ export class CriptoAService {
       () => {
         subs.next(this.criptoB = this.criptoB + (Math.random() * (200 - (-200)) + (-200)));
         let chartTime: any = new Date().toTimeString().split(' ')[0];
-        console.log('B', this.criptoB);
+        
         this.graphB = {
           amounts: [...this.graphB.amounts, this.criptoB],
           hour: [...this.graphB.hour, chartTime]
