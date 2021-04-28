@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CriptoAService } from '../services/cripto-a.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,11 @@ export class DashboardComponent implements OnInit {
 
   showFiller = false;
 
-  constructor() {
+  constructor(private service: CriptoAService) {
    }
 
   ngOnInit(): void {
+    this.service.subjectA$.subscribe();
   }
 
   receiveMessage($event) {

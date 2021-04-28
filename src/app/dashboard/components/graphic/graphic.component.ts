@@ -11,8 +11,8 @@ import { Color, Label } from 'ng2-charts';
 })
 export class GraphicComponent implements OnInit, OnChanges {
 
-  @Input() var:number;
-  @Input() hour:string;
+  @Input() var:number[];
+  @Input() hour:string[];
   public lineChartData: ChartDataSets[] = [
     // { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [], label: 'Series A' },
@@ -45,17 +45,8 @@ export class GraphicComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.var.currentValue){
-      console.log(this.var, "cambio");
-      this.lineChartData[0].data.push(this.var);
-      if (this.lineChartData[0].data.length >= 11) {
-        this.lineChartData[0].data.shift();
-      }
-      let chartTime: any = new Date();
-      chartTime = chartTime.getHours() + ':' + ((chartTime.getMinutes() < 10) ? '0' + chartTime.getMinutes() : chartTime.getMinutes()) + ':' + ((chartTime.getSeconds() < 10) ? '0' + chartTime.getSeconds() : chartTime.getSeconds());
-      this.lineChartLabels.push(chartTime);
-      if (this.lineChartLabels.length >= 11) {
-        this.lineChartLabels.shift();
-      }
+      this.lineChartData[0].data=this.var;
+      this.lineChartLabels=this.hour;
     }
   }
 

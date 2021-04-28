@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducers';
-import { CriptoAService } from 'src/app/services/cripto-a.service';
+
 import { UpdateCriptoAction } from 'src/app/shared/criptomoney.action';
 import { criptomoneyClass } from 'src/app/shared/criptomoney.model';
+import { graphicInterface } from 'src/app/shared/redux-graphic/graphic.reducer';
 import { SetWalletAction } from '../wallet/wallet.actions';
 import { walletClass } from '../wallet/wallet.model';
 
@@ -13,45 +15,56 @@ import { walletClass } from '../wallet/wallet.model';
   templateUrl: './cripto-money-a.component.html',
   styleUrls: ['./cripto-money-a.component.sass']
 })
-export class CriptoMoneyAComponent implements OnInit {
+
+export class CriptoMoneyAComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  criptoA:number;
+  criptoA: number;
+
+  criptoMoneySub: Subscription = new Subscription();
+  criptoMoney: graphicInterface;
+
 
   constructor(private fb: FormBuilder,
-    private store: Store<AppState>,
-    private service: CriptoAService) {
+    private store: Store<AppState>,) {
+    this.criptoMoneySub = this.store.select('graphic').subscribe(resp => {
+      this.criptoMoney = resp;
+    });
+
     this.form = this.fb.group({
       amount: ['',],
     });
-   }
-
-  ngOnInit(): void {
-    this.service.subjectA$.subscribe(resp=>{this.criptoA=resp});
   }
 
-  onUpdateCripto(){
-    const day=new Date;
-    const cod='cod13';
-    const amount=-700;
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.criptoMoneySub.unsubscribe()
+  }
+
+  onUpdateCripto() {
+    const day = new Date;
+    const cod = 'cod13';
+    const amount = -700;
 
     const wallet: walletClass = {
       amount: amount,
       transaction: cod,
       day: day,
     }
-    const temp:criptomoneyClass={ 
-      amount: amount, 
-      transaction: cod, 
-      day: day, 
-      quantityCripto: 0.4, 
-      typeMoney: 5128.973 
+    const temp: criptomoneyClass = {
+      amount: amount,
+      transaction: cod,
+      day: day,
+      quantityCripto: 0.4,
+      typeMoney: 5128.973
     }
 
     const newWallet = new SetWalletAction(wallet);
     this.store.dispatch(newWallet);
-    
-    const newCriptoShop =new UpdateCriptoAction(temp);
+
+    const newCriptoShop = new UpdateCriptoAction(temp);
     this.store.dispatch(newCriptoShop);
   }
 }
