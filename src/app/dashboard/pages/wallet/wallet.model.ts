@@ -8,12 +8,6 @@ export class walletClass{
         this.transaction=obj.transaction;
         this.day=obj.day;
     }
-
-    // constructor (amount:number, transaction: string, day: Date){
-    //     this.amount=amount;
-    //     this.transaction=transaction;
-    //     this.day=day;
-    // }
 }
 
 export interface walletInterface{

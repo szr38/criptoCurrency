@@ -1,57 +1,49 @@
 <div class="d-flex flex-row">
-  <!-- width="400" height="400" -->
-  <div class="col-6" style="display: block" >
-    <canvas baseChart
-      [datasets]="lineChartData" 
-      [labels]="lineChartLabels" 
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend" 
-      [chartType]="lineChartType" 
-      [options]="lineChartOptions"
-      [plugins]="lineChartPlugins">
-    </canvas>
-  </div>
 
-  <div class="col-6">
+  <div class="col-8">
     <mat-table [dataSource]="dataSource" matSort>
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="transaction">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.transaction}} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Weight </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+      <ng-container matColumnDef="day">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Day </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.day | date:'short'}} </mat-cell>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+      <ng-container matColumnDef="balance">
+        <mat-header-cell *matHeaderCellDef style="max-width: 110px;">Rise</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="d-flex flex-row justify-content-between" style="max-width: 110px;">
+          {{element.balance}}
+          <mat-icon *ngIf="element.amount>0" style="color:green">arrow_upward</mat-icon>
+          <mat-icon *ngIf="element.amount<=0" style="color:red">arrow_downward</mat-icon>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div class="col-4">
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Añadir saldo</mat-label>
+        <input matInput type="number" formControlName='amount' min="0">
+        <button mat-button matSuffix mat-icon-button aria-label="Add" (click)="onAddCredit()"
+          (keyup.enter)="onAddCredit()">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
   </div>
 
 </div>
-<form [formGroup]="form">
-  <mat-form-field>
-    <mat-label>Añadir saldo</mat-label>
-    <input matInput type="number" formControlName='amount'>
-    <button mat-button matSuffix mat-icon-button aria-label="Add" (click)="onAddCredit()" (keyup.enter)="onAddCredit()">
-      <mat-icon>add_circle_outline</mat-icon>
-    </button>
-  </mat-form-field>
-</form>
-
