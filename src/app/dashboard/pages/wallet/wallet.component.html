@@ -5,7 +5,7 @@
 
       <ng-container matColumnDef="amount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.amount |currency}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="transaction">
@@ -19,7 +19,7 @@
       </ng-container>
 
       <ng-container matColumnDef="balance">
-        <mat-header-cell *matHeaderCellDef style="max-width: 110px;">Rise</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 110px;">Rise</mat-header-cell>
         <mat-cell *matCellDef="let element" class="d-flex flex-row justify-content-between" style="max-width: 110px;">
           {{element.balance}}
           <mat-icon *ngIf="element.amount>0" style="color:green">arrow_upward</mat-icon>
