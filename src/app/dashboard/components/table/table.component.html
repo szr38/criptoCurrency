@@ -12,8 +12,8 @@
         </ng-container>
 
         <ng-container matColumnDef="rise">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Rise </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.rise | currency }}
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 110px;"> Rise </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="d-flex flex-row justify-content-between" style="max-width: 110px;"> {{element.rise | currency }}
                 <mat-icon *ngIf="element.rise>0" style="color:green">arrow_upward</mat-icon>
                 <mat-icon *ngIf="element.rise<=0" style="color:red">arrow_downward</mat-icon>
             </mat-cell>
