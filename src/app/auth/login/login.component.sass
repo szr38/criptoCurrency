@@ -8,9 +8,13 @@
   box-shadow: 3px 3px rgba(128, 128, 128, 0.568)
   cursor: pointer
   width: 50%
+  text-align: center
 
   &:focus
     outline: none
 
 .button-disabled
   background-color: grey
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle
+  stroke: #0CC20C
