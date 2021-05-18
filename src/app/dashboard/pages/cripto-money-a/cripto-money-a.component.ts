@@ -32,7 +32,8 @@ export class CriptoMoneyAComponent implements OnInit, OnDestroy {
     });
 
     this.form = this.fb.group({
-      amount: ['',],
+      amount: [null,],
+      quantity: [null,]
     });
   }
 
@@ -46,20 +47,22 @@ export class CriptoMoneyAComponent implements OnInit, OnDestroy {
   onUpdateCripto() {
     const day = new Date;
     const cod = 'cod13';
-    const amount = -700;
+    const amount = this.form.get('amount').value;
 
     const wallet: walletClass = {
-      amount: amount,
+      amount: amount*-1,
       transaction: cod,
       day: day,
     }
     const temp: criptomoneyClass = {
-      amount: amount,
+      amount: amount*-1,
       transaction: cod,
       day: day,
       quantityCripto: 0.4,
-      typeMoney: 5128.973
+      typeMoney: 1
     }
+
+    console.log('Wallet: ',wallet,' temp: ', temp)
 
     const newWallet = new SetWalletAction(wallet);
     this.store.dispatch(newWallet);

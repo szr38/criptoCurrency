@@ -33,7 +33,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.dataTable);
+    // console.log(this.dataTable);
     let temp: table[] = [];
     const riseA = this.dataTable.criptoA.amounts.length > 2 ? this.dataTable.criptoA.amounts[this.dataTable.criptoA.amounts.length - 1] - this.dataTable.criptoA.amounts[this.dataTable.criptoA.amounts.length - 2] : 0;
     const riseB = this.dataTable.criptoB.amounts.length > 2 ? this.dataTable.criptoB.amounts[this.dataTable.criptoB.amounts.length - 1] - this.dataTable.criptoB.amounts[this.dataTable.criptoB.amounts.length - 2] : 0;
