@@ -9,8 +9,9 @@ export class SidebarComponent implements OnInit {
 
   buttons:sideBar[]=[
     {    icon:'account_balance_wallet',    link:'wallet',    text:'Wallet'  },
-    {    icon:'paid',                      link:'moneyA',    text:'CriptoA'  },
-    {    icon:'monetization_on',           link:'moneyB',    text:'CriptoB'  },
+    {    icon:'stream',                      link:'moneyA',    text:'CriptoA'  },
+    {    icon:'toll',           link:'moneyB',    text:'CriptoB'  },
+    {    icon:'grain',           link:'moneyC',    text:'CriptoC'  },
 ]
   opened: boolean;
 

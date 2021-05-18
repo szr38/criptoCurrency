@@ -37,6 +37,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     let temp: table[] = [];
     const riseA = this.dataTable.criptoA.amounts.length > 2 ? this.dataTable.criptoA.amounts[this.dataTable.criptoA.amounts.length - 1] - this.dataTable.criptoA.amounts[this.dataTable.criptoA.amounts.length - 2] : 0;
     const riseB = this.dataTable.criptoB.amounts.length > 2 ? this.dataTable.criptoB.amounts[this.dataTable.criptoB.amounts.length - 1] - this.dataTable.criptoB.amounts[this.dataTable.criptoB.amounts.length - 2] : 0;
+    const riseC = this.dataTable.criptoC.amounts.length > 2 ? this.dataTable.criptoC.amounts[this.dataTable.criptoC.amounts.length - 1] - this.dataTable.criptoC.amounts[this.dataTable.criptoC.amounts.length - 2] : 0;
     temp = [{
       name: "criptoA",
       price: this.dataTable.criptoA.amounts[this.dataTable.criptoA.amounts.length - 1],
@@ -50,7 +51,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     {
       name: "criptoC",
       price: this.dataTable.criptoC.amounts[this.dataTable.criptoC.amounts.length - 1],
-      rise: 3
+      rise: riseC
     }]
     this.dataSource.data = temp;
   }

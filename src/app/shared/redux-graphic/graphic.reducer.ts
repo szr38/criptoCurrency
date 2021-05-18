@@ -25,17 +25,17 @@ export const initialState: graphicInterface={
 
 export const scoreboardReducer = createReducer(
     initialState,
-    on(fromGraphicActions.UpdateCriptoAction, (state, { cripto }) => ({
+    on(fromGraphicActions.UpdateGraphicAction, (state, { graphic }) => ({
         ...state,
-        criptoA:cripto
+        criptoA:graphic
     })),
-    on(fromGraphicActions.UpdateCriptoBAction, (state, { cripto }) => ({
+    on(fromGraphicActions.UpdateGraphicBAction, (state, { graphic }) => ({
         ...state,
-        criptoB:cripto
+        criptoB:graphic
     })),
-    on(fromGraphicActions.UpdateCriptoCAction, (state, { cripto }) => ({
+    on(fromGraphicActions.UpdateGraphicCAction, (state, { graphic }) => ({
         ...state,
-        criptoC:cripto
+        criptoC:graphic
     })),
     // on(fromGraphicActions.UnsetCriptoAAction, state=>({}))
 

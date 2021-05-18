@@ -36,7 +36,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private store: Store<AppState>,
     private fb: FormBuilder,) {
     this.form = this.fb.group({
-      amount: ['',],
+      amount: [null,],
     });
   }
 
@@ -61,16 +61,17 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   onAddCredit() {
     let cod=this.walletTable[this.walletTable.length-1].transaction;
     let num=cod.split('-')[1];
-    console.log('cod: ',cod,'num: ',num);
     
     const temp: walletClass = {
       amount: this.form.get('amount').value,
-      transaction: 're-4',
+      transaction: 're-'+(Number(num)+1),
       day: new Date,
     }
-    const newWallet = new SetWalletAction(temp);
-    this.store.dispatch(newWallet);
-    this.form.get("amount").setValue('');
+    if(temp.amount!=null &&  temp.amount>0){
+      const newWallet = new SetWalletAction(temp);
+      this.store.dispatch(newWallet);
+      this.form.get("amount").setValue(null);
+    }
   }
 
   ngOnDestroy(): void {
