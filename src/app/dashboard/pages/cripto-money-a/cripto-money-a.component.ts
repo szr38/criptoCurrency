@@ -19,33 +19,30 @@ import { walletClass } from '../wallet/wallet.model';
 export class CriptoMoneyAComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  criptoA: number;
 
   criptoMoneySub: Subscription = new Subscription();
   criptoMoney: criptomoneyInterface[];
 
   graphicSub: Subscription = new Subscription();
-  graphic:  graphicInterface;
+  graphic: graphicInterface;
 
-  
-  constructor(private fb: FormBuilder,
-    private store: Store<AppState>,) {
+  quantity: number = 0;
+  amount: number;
+
+
+  constructor(private store: Store<AppState>,) {
     this.criptoMoneySub = this.store.select('criptomoney').subscribe(resp => {
       this.criptoMoney = resp;
     });
 
     this.graphicSub = this.store.select('graphic').subscribe(resp => {
       this.graphic = resp;
+      this.amount = this.graphic.criptoA.amounts[this.graphic.criptoA.amounts.length - 1];
     });
 
-    this.form = this.fb.group({
-      amount: [null,],
-      quantity: [null,]
-    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
   ngOnDestroy(): void {
     this.criptoMoneySub.unsubscribe()
@@ -53,29 +50,37 @@ export class CriptoMoneyAComponent implements OnInit, OnDestroy {
 
   onUpdateCripto() {
     const day = new Date;
-    const cod = 'cod13';
-    const amount = this.form.get('amount').value;
-    const quantity= this.form.get('quantity').value;
+    const cod = 'cod-' + this.generateRandom(5);
 
     const wallet: walletClass = {
-      amount: amount*-1,
+      amount: (this.amount * this.quantity) * -1,
       transaction: cod,
       day: day,
     }
     const temp: criptomoneyClass = {
-      amount: amount*-1,
+      amount: (this.amount * this.quantity) * -1,
       transaction: cod,
       day: day,
-      quantityCripto: quantity,
+      quantityCripto: this.quantity,
       typeMoney: 1
     }
 
-    console.log('Wallet: ',wallet,' temp: ', temp)
+    console.log('Wallet: ', wallet, ' temp: ', temp)
 
     const newWallet = new SetWalletAction(wallet);
     this.store.dispatch(newWallet);
 
     const newCriptoShop = new UpdateCriptoAction(temp);
     this.store.dispatch(newCriptoShop);
+  }
+
+  generateRandom(num): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < num; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 }

@@ -29,7 +29,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   walletSubs: Subscription = new Subscription();
-  walletTable:walletTable[]=[];
+  walletTable: walletTable[] = [];
 
   form: FormGroup;
 
@@ -42,32 +42,29 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.walletSubs = this.store.select('wallet').subscribe(wallet => {
-      let cont=0;
-      this.walletTable=[];
+      let cont = 0;
+      this.walletTable = [];
       wallet.forEach(element => {
         this.walletTable.push({
-          amount:element.amount,
-          day:element.day,
-          transaction:element.transaction,
-          balance:cont=cont+element.amount,
+          amount: element.amount,
+          day: element.day,
+          transaction: element.transaction,
+          balance: cont = cont + element.amount,
         })
       });
-      this.dataSource.data=this.walletTable;
+      this.dataSource.data = this.walletTable;
     });
 
-    
+
   }
 
   onAddCredit() {
-    let cod=this.walletTable[this.walletTable.length-1].transaction;
-    let num=cod.split('-')[1];
-    
     const temp: walletClass = {
       amount: this.form.get('amount').value,
-      transaction: 're-'+(Number(num)+1),
+      transaction: 'rel-'+this.generateRandom(5),
       day: new Date,
     }
-    if(temp.amount!=null &&  temp.amount>0){
+    if (temp.amount != null && temp.amount > 0) {
       const newWallet = new SetWalletAction(temp);
       this.store.dispatch(newWallet);
       this.form.get("amount").setValue(null);
@@ -78,11 +75,21 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.walletSubs.unsubscribe();
   }
 
+  generateRandom(num): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result1 = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < num; i++) {
+      result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result1;
+  }
+
 }
 
-interface walletTable{
-  amount:number;
+interface walletTable {
+  amount: number;
   transaction: string;
-  day:Date;
-  balance:number;
+  day: Date;
+  balance: number;
 }

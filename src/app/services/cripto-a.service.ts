@@ -92,15 +92,15 @@ export class CriptoAService {
 
 
   constructor(private store: Store<AppState>) {
-    // this.criptoA$.subscribe(this.subjectA$);
-    // // this.subjectA$.subscribe(this.observerA);
-    // this.subjectA$.subscribe();
+    this.criptoA$.subscribe(this.subjectA$);
+    // this.subjectA$.subscribe(this.observerA);
+    this.subjectA$.subscribe();
 
-    // this.criptoB$.subscribe(this.subjectB$);
-    // this.subjectB$.subscribe();
+    this.criptoB$.subscribe(this.subjectB$);
+    this.subjectB$.subscribe();
 
-    // this.criptoC$.subscribe(this.subjectC$);
-    // this.subjectC$.subscribe();
+    this.criptoC$.subscribe(this.subjectC$);
+    this.subjectC$.subscribe();
   }
 }
 

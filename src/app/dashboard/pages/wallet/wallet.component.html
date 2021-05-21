@@ -21,7 +21,7 @@
       <ng-container matColumnDef="balance">
         <mat-header-cell *matHeaderCellDef mat-sort-header style="max-width: 110px;">Rise</mat-header-cell>
         <mat-cell *matCellDef="let element" class="d-flex flex-row justify-content-between" style="max-width: 110px;">
-          {{element.balance}}
+          {{element.balance |currency}}
           <mat-icon *ngIf="element.amount>0" style="color:green">arrow_upward</mat-icon>
           <mat-icon *ngIf="element.amount<=0" style="color:red">arrow_downward</mat-icon>
         </mat-cell>
